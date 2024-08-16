@@ -1,4 +1,6 @@
 import { useState } from "react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 import Perfil from "./components/Perfil"
 import Formulario from "./components/Formulario"
@@ -12,7 +14,7 @@ function App() {
 
   return(
     <div>
-      <input type="text" onBlur={(e) => setNomeUsuario(e.target.value)}/>
+      <input type="text" placeholder="Buscar usuário" onBlur={(e) => setNomeUsuario(e.target.value)}/>
       
       {nomeUsuario.length > 4 && (
         <>
@@ -21,12 +23,7 @@ function App() {
         </>
       )}
       
-
-     {/* {formularioEstaVisivel && (
-        <Formulario/>
-      )}
-      
-      <button onClick={() => setFormularioEstaVisivel(!formularioEstaVisivel)} type="button">toggle form</button> */}
+      <FontAwesomeIcon icon={faSearch} style={{ position: 'absolute', right: '10px', color: '#aaa', cursor: 'pointer' }} />
     </div>
   )
 }

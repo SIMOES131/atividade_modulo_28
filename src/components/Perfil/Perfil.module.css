@@ -18,3 +18,14 @@
     font-size: 18px;
     color: var(--corSecundaria);
 }
+
+input {
+    font-size: 18px;
+    background-color: #06f325;
+    color: #fff;
+    width: 100%;
+    height: 30px;
+    display: flex;
+    text-align: center;
+    border: none;
+}
