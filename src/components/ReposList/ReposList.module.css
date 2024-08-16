@@ -24,3 +24,18 @@
     padding: 8px;
     text-decoration: none;
 }
+
+@media (max-width: 1024px) {
+    .list {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+}
+}
+
+@media (max-width: 568px) {
+    .list {
+        grid-template-columns: 1fr;
+        text-align: center;
+}
+}
+    
