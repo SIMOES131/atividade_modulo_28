@@ -1,63 +1,48 @@
-import {useState, useEffect} from "react"
+// src/components/Formulario/index.jsx
 
-const Formulario = () => {
-    const [materiaA, setMateriaA]= useState(0);
-    const [materiaB, setMateriaB]= useState(0);
-    const [materiaC, setMateriaC]= useState(0);
-    const [nome, setNome]= useState('');
+import React, { useState } from 'react';
+import styles from './Formulario.module.css';
 
-    useEffect(() => {
-        console.log("O componente iniciou");
+function Formulario({ calcularIMC }) {
+  const [altura, setAltura] = useState('');
+  const [peso, setPeso] = useState('');
 
-        return () => {
-            console.log("O componete finalizou")
-        }
-    }, []);
-    
-    useEffect(() => {
-        console.log("O estado do nome mudou");
-    }, [nome]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    calcularIMC(altura, peso);
+  };
 
-    useEffect(() => {
-        console.log("matéria A mudou: " + materiaA);
-    }, [materiaA, materiaB, materiaC]);
+  return (
+    <div class="container">
+        <form className={styles.form} onSubmit={handleSubmit}>
+            <div>
+              <label className={styles.label} htmlFor="altura">Altura (cm): </label>
+              <input
+                className={styles.input}
+                type="number"
+                id="altura"
+                value={altura}
+                onChange={(e) => setAltura(e.target.value)}
+                required
+              />
+            </div>
 
-    const alteraNome = (evento) => {
-        //setNome(evento.target.value);
-        setNome(estadoAnterior => {
-            return evento.target.value;
-        })
-    }
+      <div>
+        <label className={styles.label} htmlFor="peso">Peso (kg): </label>
+        <input
+          className={styles.input}
+          type="number"
+          id="peso"
+          value={peso}
+          onChange={(e) => setPeso(e.target.value)}
+          required
+        />
+      </div>
 
-    const renderizaResultado = () => {
-        const soma = materiaA + materiaB + materiaC;
-        const media = soma / 3;
-
-        if (media >= 7) {
-            return (
-                <p>Olá {nome}, você foi aprovado</p>
-            )
-        } else {
-            return (
-                <p>Olá {nome}, você não foi aprovado</p>
-            )
-        }
-    }
-
-    return (
-        <form>
-        <ul>
-            {[1, 2, 3, 4, 5].map(item => (
-                <li key={item}>{item}</li>))}
-        </ul>
-
-            <input type="text" placeholder="Seu nome" onChange={alteraNome}/>
-            <input type="number" placeholder="Nota matéria A" onChange={evento => setMateriaA(parseInt(evento.target.value))}/> 
-            <input type="number" placeholder="Nota matéria B" onChange={evento => setMateriaB(parseInt(evento.target.value))}/>
-            <input type="number" placeholder="Nota matéria C" onChange={evento => setMateriaC(parseInt(evento.target.value))}/>
-            {renderizaResultado()}
-        </form>
-    )
+      <button className={styles.button} type="submit">Calcular IMC</button>
+    </form>
+    </div>  
+  );
 }
 
 export default Formulario;

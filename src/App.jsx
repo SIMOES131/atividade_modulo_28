@@ -1,31 +1,47 @@
-import { useState } from "react"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-
-import Perfil from "./components/Perfil"
-import Formulario from "./components/Formulario"
-import ReposList from "./components/ReposList";
-
-
+import React, { useState } from 'react';
+import Formulario from './components/Formulario';
 
 function App() {
-  const [formularioEstaVisivel, setFormularioEstaVisivel] = useState(true);
-  const [nomeUsuario, setNomeUsuario] = useState('');
+  const [imc, setImc] = useState(null);
+  const [classificacao, setClassificacao] = useState('');
 
-  return(
-    <div>
-      <input type="text" placeholder="Buscar usuário" onBlur={(e) => setNomeUsuario(e.target.value)}/>
+  const calcularIMC = (altura, peso) => {
+    if (altura && peso) {
+      const alturaMetros = altura / 100; // Converter altura para metros
+      const imcCalculado = (peso / (alturaMetros * alturaMetros)).toFixed(2); // Cálculo do IMC
       
-      {nomeUsuario.length > 4 && (
-        <>
-          <Perfil nomeUsuario={nomeUsuario}/>
-          <ReposList nomeUsuario={nomeUsuario}/>
-        </>
+      setImc(imcCalculado);
+      definirClassificacao(imcCalculado);
+    }
+  };
+
+  const definirClassificacao = (imc) => {
+    if (imc < 18.5) {
+      setClassificacao('Abaixo do peso');
+    } else if (imc >= 18.5 && imc <= 24.9) {
+      setClassificacao('Peso normal');
+    } else if (imc >= 25 && imc <= 29.9) {
+      setClassificacao('Sobrepeso');
+    } else {
+      setClassificacao('Obesidade');
+    }
+  };
+
+  return (
+    <div class="container">
+      <div className="App">
+      <h1>Calculadora de IMC</h1>
+      <Formulario calcularIMC={calcularIMC} />
+
+      {imc && (
+        <div class="resultado">
+          <h2>Seu IMC: {imc}</h2>
+          <p>Classificação: {classificacao}</p>
+        </div>
       )}
-      
-      <FontAwesomeIcon icon={faSearch} style={{ position: 'absolute', right: '10px', color: '#aaa', cursor: 'pointer' }} />
     </div>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
