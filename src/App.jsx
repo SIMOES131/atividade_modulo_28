@@ -6,7 +6,8 @@ function App() {
   const [classificacao, setClassificacao] = useState('');
 
   const calcularIMC = (altura, peso) => {
-    if (altura && peso) {
+    
+    {
       const alturaMetros = altura / 100; // Converter altura para metros
       const imcCalculado = (peso / (alturaMetros * alturaMetros)).toFixed(2); // Cálculo do IMC
       
@@ -18,12 +19,16 @@ function App() {
   const definirClassificacao = (imc) => {
     if (imc < 18.5) {
       setClassificacao('Abaixo do peso');
-    } else if (imc >= 18.5 && imc <= 24.9) {
-      setClassificacao('Peso normal');
-    } else if (imc >= 25 && imc <= 29.9) {
+    } else if (imc >= 18.5 && imc <24.9) {
+      setClassificacao('Peso normal')
+    } else if (imc >= 25 && imc < 29.9) {
       setClassificacao('Sobrepeso');
+    } else if (imc >= 30 && imc < 34.99) {
+      setClassificacao('Obesidade Grau I');
+    } else if (imc >= 35 && imc < 39.99) {
+      setClassificacao('Obesidade Grau II')
     } else {
-      setClassificacao('Obesidade');
+      setClassificacao('Obesidade Grau III')
     }
   };
 
