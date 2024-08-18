@@ -15,24 +15,28 @@ function Formulario({ calcularIMC }) {
   return (
     <div class="container">
         <form className={styles.form} onSubmit={handleSubmit}>
+          
             <div>
-              <label className={styles.label} htmlFor="altura">Altura (cm): </label>
+              <h2>Altura em (cm):</h2>
               <input
                 className={styles.input}
                 type="number"
                 id="altura"
+                placeholder='Digite sua altura'
                 value={altura}
                 onChange={(e) => setAltura(e.target.value)}
                 required
               />
             </div>
 
+      
       <div>
-        <label className={styles.label} htmlFor="peso">Peso (kg): </label>
+        <h2>Peso em (kg):</h2>
         <input
           className={styles.input}
           type="number"
-          id="peso"
+          id="peso" 
+          placeholder='Digite seu peso'
           value={peso}
           onChange={(e) => setPeso(e.target.value)}
           required

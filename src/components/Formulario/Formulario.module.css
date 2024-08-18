@@ -11,6 +11,7 @@
 }
 
 .input {
+    width: 360px;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -31,4 +32,9 @@
 
 .button:hover {
     background-color: #0056b3;
+}
+
+h2 {
+    font-size: 20px;
+    text-align: center;
 }
