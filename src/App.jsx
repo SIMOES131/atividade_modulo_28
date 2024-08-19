@@ -35,7 +35,6 @@ function App() {
   return (
     <div class="container">
       <div className="App">
-      <h1>Calculadora de IMC</h1>
       <Formulario calcularIMC={calcularIMC} />
 
       {imc && (

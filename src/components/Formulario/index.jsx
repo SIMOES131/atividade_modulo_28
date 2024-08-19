@@ -14,6 +14,7 @@ function Formulario({ calcularIMC }) {
 
   return (
     <div class="container">
+      <h1>Calculadora de IMC</h1>
         <form className={styles.form} onSubmit={handleSubmit}>
           
             <div>
@@ -29,7 +30,6 @@ function Formulario({ calcularIMC }) {
               />
             </div>
 
-      
       <div>
         <h2>Peso em (kg):</h2>
         <input
@@ -44,6 +44,7 @@ function Formulario({ calcularIMC }) {
       </div>
 
       <button className={styles.button} type="submit">Calcular IMC</button>
+      
     </form>
     </div>  
   );
